@@ -1,16 +1,20 @@
 import React from 'react';
 import './Layout.scss';
 import {ReactComponent as Logo} from '../../assets/logo.svg';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Container from '@material-ui/core/Container';
-import Fab from '@material-ui/core/Fab';
+import {
+  AppBar,
+  Container,
+  createStyles,
+  CssBaseline,
+  Fab,
+  makeStyles,
+  Theme,
+  Toolbar,
+  Typography,
+  useScrollTrigger,
+  Zoom,
+} from '@material-ui/core';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Zoom from '@material-ui/core/Zoom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,18 +56,20 @@ export interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({className, children}) => (
   <div className={`Layout${className ? ` ${className}` : ''}`}>
     <CssBaseline />
-    <AppBar>
+    <AppBar color="secondary">
       <Toolbar>
         <Logo />
-        <Typography variant="h5">SiteConfig Configurator</Typography>
+        <Container maxWidth="md">
+          <Typography variant="h5" component="h1">
+            SiteConfig Configurator
+          </Typography>
+        </Container>
       </Toolbar>
     </AppBar>
     <Toolbar id="back-to-top-anchor" />
-    <Container maxWidth="md">
-      {children}
-    </Container>
+    {children}
     <ScrollTop>
-      <Fab color="secondary" size="small" aria-label="scroll back to top">
+      <Fab color="primary" size="small" aria-label="scroll back to top">
         <KeyboardArrowUpIcon />
       </Fab>
     </ScrollTop>

@@ -1,0 +1,40 @@
+.Home {
+  padding: 32px 0;
+
+  .view-title {
+    padding: 42px 0 28px;
+    border-top: 2px solid rgb(224, 224, 224);
+    + p {
+      padding-bottom: 28px;
+      + input + label,
+      + button {
+        display: inline-block;
+        margin-bottom: 32px;
+      }
+    }
+  }
+
+  .group-title {
+    background: rgb(232, 239, 254);
+    margin-bottom: 32px;
+    padding: 5px 0;
+    span {
+      display: block;
+    }
+  }
+
+  .group-item:last-child {
+    margin-bottom: 32px;
+  }
+
+  .group-item-title {
+    font-size: 1.15rem;
+  }
+
+  .machine-name {
+    color: rgb(102, 102, 102);
+    span {
+      color: rgb(60, 123, 246);
+    }
+  }
+}
