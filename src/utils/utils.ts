@@ -1,6 +1,18 @@
 import json5Writer from 'json5-writer';
 import {saveAs} from 'file-saver';
 import {ViewData} from '../interfaces';
+import {BUTTON_LIST, COOKIE_OPTIONS} from '../constants';
+import Cookies from 'universal-cookie';
+
+export const getButtonListFromCookie = () => {
+  const cookies = new Cookies();
+  return cookies.get(BUTTON_LIST);
+};
+
+export const setButtonListCookie = (buttonList: any) => {
+  const cookies = new Cookies();
+  cookies.set(BUTTON_LIST, buttonList, COOKIE_OPTIONS);
+};
 
 export const getUpdatedJSON5SiteConfig = (
   siteConfigString: string,
@@ -29,7 +41,7 @@ export const getUpdatedJSON5SiteConfig = (
     qss: {
       ...siteConfigObj.qss,
       showQssOnStart,
-      buttonList,
+      buttonList: getButtonListFromCookie(),
       messages: {
         ...siteConfigObj.qss.messages,
         keyedOut,

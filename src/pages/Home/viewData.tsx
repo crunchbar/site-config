@@ -9,6 +9,7 @@ import {
 import {Launch, Publish} from '@material-ui/icons';
 import {ViewData} from '../../interfaces';
 import ChipInput from 'material-ui-chip-input';
+import {QCT_URL} from '../../constants'
 
 export const getViewData = ({
   showQssOnStart,
@@ -91,7 +92,9 @@ onUpload: (file?: any) => void) => [
               <Button
                 variant="contained"
                 color="primary"
-                endIcon={<Launch />}>
+                endIcon={<Launch />}
+                onClick={() => window.open(QCT_URL, '_blank')}
+              >
                 Configure QuickStrip Buttons
               </Button>
             )

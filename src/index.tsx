@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import {Home} from './pages/Home';
 import * as serviceWorker from './serviceWorker';
 import {ThemeProvider} from '@material-ui/styles';
-import {theme} from './theme'
+import {theme} from './theme';
 
 ReactDOM.render((
   <ThemeProvider theme={theme}>

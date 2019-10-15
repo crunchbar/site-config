@@ -4,7 +4,7 @@ import {Layout} from '../../components/Layout';
 import {Instructions} from '../../components/Instructions';
 import {getViewData} from './viewData';
 import {Container, Grid, Typography} from '@material-ui/core';
-import {downloadSiteConfig} from '../../utils/utils';
+import {downloadSiteConfig, setButtonListCookie} from '../../utils/utils';
 import JSON5 from 'json5';
 /* eslint import/no-webpack-loader-syntax: off */
 import defaultSiteConfigString from '!!raw-loader!../../assets/siteconfig.json5';
@@ -91,6 +91,7 @@ export const Home: React.FC = () => {
       },
       openQssShortcut,
     } = siteConfigObj;
+    setButtonListCookie(buttonList);
     setViewData({
       showQssOnStart,
       buttonList,
@@ -108,7 +109,7 @@ export const Home: React.FC = () => {
       alwaysOnTop,
       openQssShortcut,
     });
-  }, [siteConfigObj])
+  }, [siteConfigObj]);
   return (
     <Layout>
       <div className="Home">
