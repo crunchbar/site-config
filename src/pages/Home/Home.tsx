@@ -9,48 +9,12 @@ import JSON5 from 'json5';
 /* eslint import/no-webpack-loader-syntax: off */
 import defaultSiteConfigString from '!!raw-loader!../../assets/siteconfig.json5';
 import {ViewData} from '../../interfaces';
-import {KEY_MODIFIERS} from '../../constants';
 
 export const Home: React.FC = () => {
-  const keyStore = React.useRef('');
   const [siteConfigString, setSiteConfigString] = React.useState(defaultSiteConfigString);
   const [siteConfigObj, setSiteConfigObj] = React.useState(JSON5.parse(defaultSiteConfigString));
   const [viewData, setViewData] = React.useState<ViewData>();
-  const onChange = (update: any) => setViewData(prevState => ({
-    ...prevState,
-    ...update,
-  }));
-  const onDeleteOpenQssShortcut = (chip: string) => setViewData(prevState => prevState ? ({
-    ...prevState,
-    openQssShortcut: prevState.openQssShortcut && prevState.openQssShortcut.split('+').filter(s => s !== chip).join('+'),
-  }) : undefined);
-  const onKeyDownOpenQssShortcut = (e: any) => {
-    e.preventDefault();
-    const key =
-      e.key === 'Meta'
-      ? 'Command'
-      : e.key === ' '
-      ? 'Space'
-      : e.key;
-    const isKeyModifier = KEY_MODIFIERS.includes(key);
-    if (isKeyModifier) {
-      keyStore.current += `${key}-`;
-      return;
-    }
-    keyStore.current += key;
-    setViewData(prevState => {
-      if (!prevState) {
-        return;
-      }
-      const chips = prevState.openQssShortcut ? prevState.openQssShortcut.split('+') : [];
-      return {
-        ...prevState,
-        openQssShortcut: [...chips, keyStore.current].join('+'),
-      };
-    });
-    keyStore.current = '';
-  };
-  const onDownload = () => viewData && downloadSiteConfig(siteConfigString, siteConfigObj, viewData);
+  const onDownload = () => viewData && downloadSiteConfig(siteConfigString, viewData);
   const onUpload = (file?: any) => {
     if (!file) {
       return;
@@ -66,49 +30,8 @@ export const Home: React.FC = () => {
     reader.readAsText(file);
   };
   React.useEffect(() => {
-    const {
-      qss: {
-        showQssOnStart,
-        buttonList,
-        messages: {
-          keyedOut,
-        },
-        urls: {
-          cloudFolder,
-        },
-        tooltipDisplayDelay,
-        scaleFactor,
-        docuMorphExecutable,
-      },
-      disableRestartWarning,
-      hideQssSaveButton,
-      qssMorePanel: {
-        defaultWidth,
-        defaultHeight,
-        movable,
-        resizable,
-        alwaysOnTop,
-      },
-      openQssShortcut,
-    } = siteConfigObj;
-    setButtonListCookie(buttonList);
-    setViewData({
-      showQssOnStart,
-      buttonList,
-      keyedOut,
-      cloudFolder,
-      tooltipDisplayDelay,
-      scaleFactor,
-      disableRestartWarning,
-      docuMorphExecutable,
-      hideQssSaveButton,
-      defaultWidth,
-      defaultHeight,
-      movable,
-      resizable,
-      alwaysOnTop,
-      openQssShortcut,
-    });
+    setButtonListCookie(siteConfigObj.qss.buttonList);
+    setViewData(siteConfigObj);
   }, [siteConfigObj]);
   return (
     <Layout>
@@ -116,9 +39,7 @@ export const Home: React.FC = () => {
         <Instructions />
         {viewData && getViewData(
           viewData,
-          onChange,
-          onDeleteOpenQssShortcut,
-          onKeyDownOpenQssShortcut,
+          setViewData,
           onDownload,
           onUpload,
         ).map((view, viewIndex) => (
@@ -147,7 +68,7 @@ export const Home: React.FC = () => {
                           {groupItem.body}
                         </Typography>
                         <Typography variant="body2" className="machine-name">
-                          machineName: <span>{groupItem.machineName}</span>
+                          machineName: <span>{groupItem.machineName.split('.').reduce((a,c) => c)}</span>
                         </Typography>
                       </Grid>
                       <Grid item xs={5}>
