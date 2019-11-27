@@ -27,7 +27,7 @@ export const getUpdatedJSON5SiteConfig = (
       buttonList,
     },
   });
-  return j5WriterInstance.toSource();
+  return j5WriterInstance.toSource({quote: 'double', trailingComma: true, quoteKeys: undefined});
 };
 
 export const downloadSiteConfig = (
