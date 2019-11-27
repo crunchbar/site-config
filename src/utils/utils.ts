@@ -18,8 +18,15 @@ export const getUpdatedJSON5SiteConfig = (
   siteConfigString: string,
   viewData: ViewData,
 ): string => {
+  const buttonList = getButtonListFromCookie();
   const j5WriterInstance = json5Writer.load(siteConfigString);
-  j5WriterInstance.write(viewData);
+  j5WriterInstance.write({
+    ...viewData,
+    qss: {
+      ...viewData.qss,
+      buttonList,
+    },
+  });
   return j5WriterInstance.toSource();
 };
 
