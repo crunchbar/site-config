@@ -1,10 +1,28 @@
 {
+    // Unique identifier for the deployment.
+    site: "default.gpii.net",
+
     // Whether to hide the QSS save button.
     // `true` if the button should be hidden and `false` otherwise.
     hideQssSaveButton: false,
 
+    // File containing default values which are used after resetting user settings
+    // if relativePath is true then fileLocation is joined after %appdata%, so the
+    // end result its something similar to:
+    // "C:\Users\vagrant\AppData\Roaming\gpii\defaultSettings.json5"
+    // if relativePath is false then fileLocation is assumed that its absolute path
+    // and no changes are done to it
+    defaultSettingsData: {
+        relativePath: true,
+        fileLocation: "gpii\\defaultSettings.json5"
+    },
+
     // Configuration options for the QSS window
     qss: {
+        // Whether a user can open Settings pages and Control Panels of the operating system
+        // this is used to show different data in the sideCar container
+        osSettingsAvailable: true,
+
         // Determines if the QSS will be shown automatically on Morphic's startup
         showQssOnStart: false,
 
@@ -15,7 +33,11 @@
         scaleFactor: 1.2,
         urls: {
             account: "http://morphic.world/account",
-            cloudFolder: "https://drive.google.com/drive/folders/11m-AKdP-0wjEBocpVtvnK8iE23P7hFTS"
+            cloudFolder: "https://drive.google.com/drive/folders/11m-AKdP-0wjEBocpVtvnK8iE23P7hFTS",
+            myGoogleDrive: "https://drive.google.com/",
+            myOneDrive: "https://onedrive.live.com/about/signin/",
+            myDropbox: "https://www.dropbox.com/login",
+            customizeQss: "https://morphic.world/"
         },
 
         alwaysUseChrome: false,
@@ -43,26 +65,44 @@
         // This is the path where ShareX lives after installing Morphic. Can be adjusted for development purposes.
         shareXPath: "C:\\Program Files (x86)\\Morphic\\sharex\\sharex-portable\\sharex.exe",
 
+        // The path to the DocuMorph's executable file, used in the service buttons.
+        // This is the path where DocuMorph lives after installing Morphic. Can be adjusted for development purposes.
+        docuMorphExecutable: "C:\\Program Files (x86)\\Morphic\\documorph\\DocuMorph.Widget.exe",
+
+        // The path to the Snipping Tools's executable file, used in the service buttons.
+        // This uses the internal Windows 10 snipping tool
+        snippingToolCommand: "start ms-screenclip:",
+
         // list of the desired list of buttons shown in QSS
         // it uses the `id` attribute found in settings.json items
-        // 
+
         // Custom buttons: Instead of a string with buttonId you add an object with the custom button data like this:
+        // APP type buttons require absolute path to executable in the buttonData
+        // WEB type buttons require a real valid url in the buttonData
+        // KEY type buttons require a key combation with this exact syntax:
+        // https://github.com/stegru/windows/blob/GPII-4135/gpii/node_modules/gpii-userInput/README.md
         // {
         //      "buttonId": "MakeYourOwn",
         //      "buttonName": "Launch Notepad", // Free text that will be use as button's label
-        //      "buttonType": "APP", // APP, or WEB
-        //      "buttonData": "C:\\Windows\\system32\\notepad.exe", // system path, or url
+        //      "buttonType": "APP", // APP, WEB, or KEY
+        //      "buttonData": "C:\\Windows\\system32\\notepad.exe", // system path, or url, or key combination
         //      "fullScreen": true, // true, or false
         //      "popupText": "<p>Launch the Notepad application.</p>", // tooltip text
         //      "description": "The full description of the button..." // optional description
         // }
-        // 
+
         // Separator buttons: Use can use any combination of the separators, even one after another:
-        // "separator" // Use separator for invisible separator
-        // "separator-visible" // Use separator-visible for a gray separator (same size as the invisible one)
+        // - "separator" // Use separator for invisible separator
+        // - "separator-visible" // Use separator-visible for a gray separator (same size as the invisible one)
 
         buttonList: [
             {
+                "buttonId": "MakeYourOwn",
+                "buttonName": "Task Manager",
+                "buttonType": "KEY",
+                "buttonData": "^+{Escape}",
+                "popupText": "<p>Executes Ctrl+Shift+Esc combination, which opens Windows Task Manager.</p>"
+            }, {
                 "buttonId": "MakeYourOwn",
                 "buttonName": "Launch Notepad",
                 "buttonType": "APP",
@@ -85,24 +125,29 @@
             "screen-zoom",
             "text-zoom",
             "screen-capture",
+            "snipping-tool",
             "office-simplification",
             "high-contrast",
+            "color-vision",
+            "mouse",
             "read-aloud",
             "volume",
             "launch-documorph",
             "cloud-folder-open",
             "usb-open",
+            "separator",
+            "url-google-drive",
+            "url-one-drive",
+            "url-dropbox",
+            "url-customize-qss",
             "separator-visible",
             "service-more",
             "service-save",
             "service-undo",
+            "service-saved-settings",
             "service-reset-all",
             "service-close"
-        ],
-
-        // The path to the DocuMorph's executable file, used in the service buttons.
-        // This is the path where DocuMorph lives after installing Morphic. Can be adjusted for development purposes.
-        docuMorphExecutable: "C:\\Program Files (x86)\\Morphic\\documorph\\DocuMorph.Widget.exe"
+        ]
     },
 
     // Whether to hide the QSS when a user clicks outside of it
@@ -140,9 +185,29 @@
         }
     },
 
+    // Configuration options for the dialog manager
+    dialogManager: {
+        showErrorDialog: true
+    },
+
     // URL to the the place serving the survey triggers data. Note that it should return triggers in JSON format
     surveyTriggersUrl: "http://survey.gpii.net/survey-triggers.json",
 
     // The type of widget to use in the task bar - "gpii.app.trayButton", "gpii.app.trayIcon", or both.
-    trayType: ["gpii.app.trayButton"]
+    trayType: ["gpii.app.trayButton"],
+
+    metrics: {
+        // Can be true to disable everything, or "errors-only" to only capture errors.
+        disable: false,
+        // true to disable capturing key/mouse timings
+        disableInput: false
+    },
+
+    autoLogin: {
+        blockedUsers: ["admin*", "guest*", "student*", "visitor*", "volunteer*"],
+        userIdSource: "username"
+    },
+
+    // Metrics switch (read by the service): "<morphic>:<metrics>"
+    metricsSwitch: "on:on" // (eg, "on:on"=both on (default), "off:on"=metrics only)
 }
