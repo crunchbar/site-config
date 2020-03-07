@@ -44,6 +44,18 @@
     "title": "Settings that are usually not changed, but can be",
     "items": [
       {
+        "title": "Allow Morphic to launch OS settings",
+        "body": "Allow Morphic to open Settings pages and Control Panels of the operating system?",
+        "machineName": "qss.osSettingsAvailable",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Force Morphic to use Chrome when opening URLs",
+        "body": "Do you want Morphic to always use the Chrome browser for opening web pages?",
+        "machineName": "qss.alwaysUseChrome",
+        "controlType": "Checkbox"
+      },
+      {
         "title": "Tooltip Display Delay (in milliseconds)",
         "body": "Changes the time delay before a tooltip is displayed (when hovering on something in the QuickStrip).",
         "machineName": "qss.tooltipDisplayDelay",
@@ -60,6 +72,42 @@
         "body": "Do you want to disable the warning that tells users that they may have to restart their apps in order for a changed settings to be fully applied. For example, this notification is usually displayed for the Language setting.",
         "machineName": "disableRestartWarning",
         "controlType": "Checkbox"
+      },
+      {
+        "title": "Shortcut to open Morphic",
+        "body": "Change the shortcut that opens Morphic. For possible values refer to https://electronjs.org/docs/api/accelerator",
+        "machineName": "openQssShortcut",
+        "controlType": "TextField"
+      },
+      {
+        "title": "More panel width",
+        "body": "More panel default width",
+        "machineName": "qssMorePanel.defaultWidth",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "More panel height",
+        "body": "More panel default height",
+        "machineName": "qssMorePanel.defaultHeight",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "Movable More panel",
+        "body": "Can the panel be moved?",
+        "machineName": "qssMorePanel.movable",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Resizable More panel",
+        "body": "Can the panel be resized?",
+        "machineName": "qssMorePanel.resizable",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Always on top More panel",
+        "body": "Should the panel be always on top?",
+        "machineName": "qssMorePanel.alwaysOnTop",
+        "controlType": "Checkbox"
       }
     ]
   },
@@ -67,9 +115,69 @@
     "title": "Special settings for unusual situations",
     "items": [
       {
+        "title": "Site name",
+        "body": "Unique identifier for the Morphic deployment.",
+        "machineName": "site",
+        "controlType": "TextField"
+      },
+      {
         "title": "DocuMorph Executable File Location",
         "body": "The file path to the DocuMorph executable to use in the QuickStrip document conversion features. DocuMorph is included in the Quickstrip, so you do not need to change this setting. However, you can do so if you wish to use a custom version of DocuMorph.",
         "machineName": "qss.docuMorphExecutable",
+        "controlType": "TextField"
+      },
+      {
+        "title": "ShareX Executable File Location",
+        "body": "The file path to the ShareX executable to capture screenshots. ShareX is included in the Quickstrip, so you do not need to change this setting. However, you can do so if you wish to use a custom version of ShareX.",
+        "machineName": "qss.shareXPath",
+        "controlType": "TextField"
+      },
+      {
+        "title": "Snipping Tool Command",
+        "body": "The path to the Snipping Tools's executable file, used in the service buttons. This uses the internal Windows 10 snipping tool.",
+        "machineName": "qss.snippingToolCommand",
+        "controlType": "TextField"
+      },
+      {
+        "title": "Hide the QSS save button",
+        "body": "Do you want to hide the save button?",
+        "machineName": "hideQssSaveButton",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Disable error dialogs",
+        "body": "Do you want to hide any error message? Take into account that you won't get any error displayed, even if it's critical, use it at your own risk.",
+        "machineName": "dialogManager.showErrorDialog",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Survey triggers",
+        "body": "URL to the the place serving the survey triggers data. Note that it should return triggers in JSON format.",
+        "machineName": "surveyTriggersUrl",
+        "controlType": "TextField"
+      },
+      {
+        "title": "4 state Morphic switch",
+        "body": "4 state Morphic switch. This is read by the service and determines which components do you want to start, it follows the folloing convention: \"<morphic>:<metrics>.\". (eg, \"on:on\"=both on (default), \"off:on\"=metrics only).",
+        "machineName": "metricsSwitch",
+        "controlType": "TextField"
+      },
+      {
+        "title": "Auto login user id",
+        "body": "The source where Morphic should look for the username.",
+        "machineName": "autoLogin.userIdSource",
+        "controlType": "TextField"
+      },
+      {
+        "title": "Morphic tray type",
+        "body": "The type of widget to use in the task bar - \"gpii.app.trayButton\", \"gpii.app.trayIcon\", or both.",
+        "machineName": "trayType",
+        "controlType": "TextField"
+      },
+      {
+        "title": "System default language",
+        "body": "The code of OS default language `gpii-app` (it might be the one with which the system was installed with). This language should always stay on top of the \"Language\" setting's menu list. The code must be exactly matching one of the installed languages' code (with respect to the region). In case the selected language code is missing, there simply won't be a special first setting. NOTE: this is not related to the default language value defined for the language setting",
+        "machineName": "qss.systemDefaultLanguage",
         "controlType": "TextField"
       }
     ]
