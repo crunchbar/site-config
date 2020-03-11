@@ -174,8 +174,11 @@
 
         urls: {
             moreInfo: "http://morphic.world/more"
-        }
+        },
+        "buttonList": []
     },
+
+    "qssMyChoices": [],
 
     // Configuration options for the About dialog
     aboutDialog: {

@@ -4,7 +4,7 @@ import {Layout} from '../../components/Layout';
 import {Instructions} from '../../components/Instructions';
 import {getViewData} from './viewData';
 import {Container, Grid, Typography} from '@material-ui/core';
-import {downloadSiteConfig, setButtonListCookie} from '../../utils/utils';
+import {downloadSiteConfig, setCookieData} from '../../utils/utils';
 import JSON5 from 'json5';
 /* eslint import/no-webpack-loader-syntax: off */
 import defaultSiteConfigString from '!!raw-loader!../../assets/siteconfig.json5';
@@ -30,7 +30,7 @@ export const Home: React.FC = () => {
     reader.readAsText(file);
   };
   React.useEffect(() => {
-    setButtonListCookie(siteConfigObj.qss.buttonList);
+    setCookieData(siteConfigObj);
     setViewData(siteConfigObj);
   }, [siteConfigObj]);
   return (
