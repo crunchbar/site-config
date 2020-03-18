@@ -147,7 +147,8 @@
             "service-saved-settings",
             "service-reset-all",
             "service-close"
-        ]
+        ],
+        morePanelList: []
     },
 
     // Whether to hide the QSS when a user clicks outside of it
@@ -174,8 +175,7 @@
 
         urls: {
             moreInfo: "http://morphic.world/more"
-        },
-        "buttonList": []
+        }
     },
 
     "qssMyChoices": [],
