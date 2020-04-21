@@ -49,8 +49,8 @@ export const downloadSiteConfig = (
 ) => {
   const siteConfig =
 `
-del "C:\\Program Files (x86)\\Morphic\\windows\\resources\\app\\siteconfig.BAK"
-ren "C:\\Program Files (x86)\\Morphic\\windows\\resources\\app\\siteconfig.json5" siteconfig.BAK
+del "C:\\ProgramData\\Morphic\\siteconfig.BAK"
+ren "C:\\ProgramData\\Morphic\\siteconfig.json5" siteconfig.BAK
 (
 ${
   getUpdatedJSON5SiteConfig(siteConfigString, viewData)
@@ -58,7 +58,7 @@ ${
   .replace(/%/gim, '%%')
   .replace(/[\^&<>|'`,;=()](?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$)/gim, match => `^${match}`)
 }
-) > "C:\\Program Files (x86)\\Morphic\\windows\\resources\\app\\siteconfig.json5"
+) > "C:\\ProgramData\\Morphic\\siteconfig.json5"
 `;
   const blob = new Blob([siteConfig], {type: 'application/bat;charset=utf-8'});
   saveAs(blob, 'siteconfig-installer.bat');
