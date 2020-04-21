@@ -20,9 +20,9 @@ export const getCookieData = () => {
 
 export const setCookieData = (viewData: ViewData) => {
   const cookies = new Cookies();
-  cookies.set(BUTTON_LIST, viewData.qss.buttonList, COOKIE_OPTIONS);
-  cookies.set(MORE_PANEL_LIST, viewData.qss.morePanelList, COOKIE_OPTIONS);
-  cookies.set(MY_CHOICES_LIST, viewData.qssMyChoices, COOKIE_OPTIONS);
+  cookies.set(BUTTON_LIST, viewData.qss.buttonList || [], COOKIE_OPTIONS);
+  cookies.set(MORE_PANEL_LIST, viewData.qss.morePanelList || [], COOKIE_OPTIONS);
+  cookies.set(MY_CHOICES_LIST, viewData.qssMyChoices || [], COOKIE_OPTIONS);
 };
 
 export const getUpdatedJSON5SiteConfig = (
