@@ -15,11 +15,18 @@
         "controlType": "Checkbox"
       },
       {
+        "title": "Dock the QSS to the bottom of the screen",
+        "body": "Do you want to make the QuickStrip dock to the bottom of the screen, so application windows are positioned above it?",
+        "machineName": "appBarQss",
+        "controlType": "Checkbox"
+      },
+      {
         "title": "Buttons on the QuickStrip and MORE PANEL for Site",
         "body": "Determines which buttons will be displayed, and in which order, on the QuickStrip and MORE panels for your site. Customize this setting to control the functionality that is available to your users at your site.",
         "machineName": "qss.buttonList",
         "controlType": "Button"
       },
+
       {
         "title": "Save Error Message - when not keyed in.",
         "body": "This defines the message that is displayed to the user when they click the Save button when they are not signed into Morphic. (NOTE: clicking Reset to Standard button will sign them out of Morphic.)",
@@ -148,6 +155,108 @@
         "title": "Disable error dialogs",
         "body": "Do you want to hide any error message? Take into account that you won't get any error displayed, even if it's critical, use it at your own risk.",
         "machineName": "dialogManager.showErrorDialog",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Show Promotion window",
+        "body": "Do you want to show the promotion window?",
+        "machineName": "promotionWindow.showPromotionWindow",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Promotion window content URL",
+        "body": "URL from where the content to be downloaded. If the url points to image file (png/jpg/svg) then will add the image inside the window. If it is just a web page then will load the content inside",
+        "machineName": "promotionWindow.promoContentUrl",
+        "controlType": "TextField"
+      },
+      {
+        "title": "Promotion window width",
+        "body": "Width of the promotion windows",
+        "machineName": "promotionWindow.width",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "Promotion window height",
+        "body": "Height of the promotion windows",
+        "machineName": "promotionWindow.height",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "Promotion window centered?",
+        "body": "Show the promotion window in the center of the screen?",
+        "machineName": "promotionWindow.centered",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Promotion window resizable?",
+        "body": "Can the promotion window be resized?",
+        "machineName": "promotionWindow.resizable",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Promotion window movable?",
+        "body": "Can the promotion window be moved?",
+        "machineName": "promotionWindow.movable",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Show the promotion window in the TaskBar?",
+        "body": "Should the promotion window be shown in the TaskBar?",
+        "machineName": "promotionWindow.skipTaskbar",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Frameless promotion window?",
+        "body": "Should the promotion window be shown in a frameless window?",
+        "machineName": "promotionWindow.frame",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Transparent promotion window?",
+        "body": "Should the promotion window be shown in a transparent window?",
+        "machineName": "promotionWindow.transparent",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Promotion window on top?",
+        "body": "Should the promotion window be shown on top of other windows?",
+        "machineName": "promotionWindow.alwaysOnTop",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Promotion window close delay",
+        "body": "Defines the close delay of the window in millisenconds. 0 will not close the window",
+        "machineName": "promotionWindow.closeDelay",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "Promotion window show delay",
+        "body": "Defines the show delay of the window in milliseconds. Use 0 for no show delay",
+        "machineName": "promotionWindow.showDelay",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "Promotion window offset (x)",
+        "body": "You can pick whatever X and Y coordinates you want the promo window to appear. Important notice, X: 0 and Y: 0 point to the bottom-right part of the screen. In order this option to work you need to have `centered` and `positionByTrayIcon` set to false",
+        "machineName": "promotionWindow.offset.x",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "Promotion window offset (y)",
+        "body": "You can pick whatever X and Y coordinates you want the promo window to appear. Important notice, X: 0 and Y: 0 point to the bottom-right part of the screen. In order this option to work you need to have `centered` and `positionByTrayIcon` set to false",
+        "machineName": "promotionWindow.offset.y",
+        "controlType": "NumericField"
+      },
+      {
+        "title": "Promotion window position by tray icon",
+        "body": "Position the promotion window just above the tray icon? if its set to true will overwrite the manual `offset` and `centered` options",
+        "machineName": "promotionWindow.positionByTrayIcon",
+        "controlType": "Checkbox"
+      },
+      {
+        "title": "Promotion window close button",
+        "body": "Do you want to show the close button in the promotion window?",
+        "machineName": "promotionWindow.showCloseButton",
         "controlType": "Checkbox"
       },
       {
