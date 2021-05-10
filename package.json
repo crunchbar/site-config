@@ -8,7 +8,7 @@
     "file-saver": "^2.0.2",
     "json5": "^2.1.1",
     "json5-writer": "^0.1.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "node-sass": "^4.13.1",
     "react": "^16.10.2",
     "react-app-polyfill": "^1.0.4",
