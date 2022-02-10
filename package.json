@@ -9,7 +9,7 @@
     "json5": "^2.1.1",
     "json5-writer": "^0.1.8",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.10.2",
     "react-app-polyfill": "^1.0.4",
     "react-dom": "^16.10.2",
